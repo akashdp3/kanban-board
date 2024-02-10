@@ -25,14 +25,19 @@ class _HttpService {
       url: this.prepareURL(requestConfig.url),
     };
 
-    return axios(config).then((response) => {
-      if (response?.status && response.status >= 200 && response.status < 300) {
-        return response.data;
-      }
+    return axios(config)
+      .then((response) => {
+        if (
+          response?.status &&
+          response.status >= 200 &&
+          response.status < 300
+        ) {
+          return response.data;
+        }
 
-      throw Error(response);
-    }).catch((error) => {
-
+        throw Error(response);
+      })
+      .catch((error) => {
         // Handle unauthorised API requests
         if (error?.response?.status === 401) {
           // Log user out and redirect user to signin page
@@ -49,11 +54,11 @@ class _HttpService {
         if (error?.response?.status >= 500) {
           // TODO: Redirect to 500 route
           return Promise.reject(error);
-        } 
+        }
 
         // Validation Errors
         if ([404, 403, 400].includes(error.response.status)) {
-          // These errors will be handled 
+          // These errors will be handled
           return Promise.reject(error);
         }
 

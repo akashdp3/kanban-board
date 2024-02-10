@@ -3,7 +3,7 @@ const DashboardView = () => {
     <div>
       <p>Dashboard View</p>
     </div>
-  )
-}
+  );
+};
 
 export default DashboardView;
