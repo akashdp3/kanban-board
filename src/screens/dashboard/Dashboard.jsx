@@ -17,21 +17,19 @@ const SpinnerWrapper = styled.div`
   justify-content: center;
 `;
 
-const DEFAULT_FILTER = { group_by: GROUPS.STATUS, order_by: ORDERS.PRIORITY };
+const DEFAULT_FILTER = { groupedBy: GROUPS.STATUS, orderedBy: ORDERS.PRIORITY };
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
+      isLoading: true,
       filters: DEFAULT_FILTER,
     };
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true });
     getTasks().then((res) => {
-      console.log({ res });
       this.setState({ ...res, isLoading: false });
     });
   }
@@ -42,7 +40,6 @@ class Dashboard extends React.Component {
 
   render() {
     const { isLoading, filters, tickets, users } = this.state;
-    console.log({ tickets, users });
 
     if (isLoading) {
       return (
@@ -54,7 +51,7 @@ class Dashboard extends React.Component {
 
     return (
       <DashboardLayout filters={filters} onUpdateFilter={this.updateFilters}>
-        <DashboardView tickets={tickets} users={users} />
+        <DashboardView tickets={tickets} users={users} filters={filters} />
       </DashboardLayout>
     );
   }

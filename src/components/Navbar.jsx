@@ -5,8 +5,14 @@ import { ORDERING_OPTIONS, GROUPING_OPTIONS } from "@constants/app.constants";
 
 const Wrapper = styled.div`
   background-color: #fff;
-  padding: 16px 24px;
+  padding: 0 24px;
+  height: 56px;
   width: 100%;
+  border-bottom: 1px solid rgb(236, 239, 242);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 `;
 
 const Navbar = (props) => {
@@ -18,14 +24,22 @@ const Navbar = (props) => {
 
   return (
     <Wrapper>
-      <select name="group_by" value={filters.group_by} onChange={handleChange}>
+      <select
+        name="groupedBy"
+        value={filters.groupedBy}
+        onChange={handleChange}
+      >
         {GROUPING_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
           </option>
         ))}
       </select>
-      <select name="order_by" value={filters.order_by} onChange={handleChange}>
+      <select
+        name="orderedBy"
+        value={filters.orderedBy}
+        onChange={handleChange}
+      >
         {ORDERING_OPTIONS.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -38,8 +52,8 @@ const Navbar = (props) => {
 
 Navbar.propTypes = {
   filters: PropTypes.shape({
-    group_by: PropTypes.string,
-    order_by: PropTypes.string,
+    groupedBy: PropTypes.string,
+    orderedBy: PropTypes.string,
   }).isRequired,
   onUpdateFilter: PropTypes.func.isRequired,
 };

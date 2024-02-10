@@ -19,3 +19,35 @@ export const ORDERING_OPTIONS = [
   { value: ORDERS.PRIORITY, label: "Priority" },
   { value: ORDERS.TITLE, label: "Title" },
 ];
+
+export const STATUSES = {
+  BACKLOG: "Backlog",
+  TODO: "Todo",
+  IN_PROGRESS: "In progress",
+  DONE: "Done",
+  CANCELLED: "Cancelled",
+};
+
+export const STATUS_OPTIONS = [
+  STATUSES.BACKLOG,
+  STATUSES.TODO,
+  STATUSES.IN_PROGRESS,
+  STATUSES.DONE,
+  STATUSES.CANCELLED,
+];
+
+export const PRIORITIES = {
+  URGENT: "Urgent",
+  HIGH: "High",
+  MEDIUM: "Medium",
+  LOW: "Low",
+  NO_PRIORITY: "No priority",
+};
+
+export const PRIORITY_OPTIONS = [
+  PRIORITIES.URGENT,
+  PRIORITIES.HIGH,
+  PRIORITIES.MEDIUM,
+  PRIORITIES.LOW,
+  PRIORITIES.NO_PRIORITY,
+];

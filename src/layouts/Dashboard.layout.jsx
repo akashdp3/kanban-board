@@ -8,13 +8,17 @@ const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  .content {
+    padding: 32px 24px;
+  }
 `;
 
 const DashboardLayout = ({ children, ...others }) => {
   return (
     <Wrapper>
       <Navbar {...others} />
-      {children}
+      <div className="content">{children}</div>
     </Wrapper>
   );
 };
