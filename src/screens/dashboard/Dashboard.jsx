@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
+import DashboardLayout from "@layouts/Dashboard.layout";
 import Spinner from "@components/Spinner";
+import { GROUPS, ORDERS } from "@constants/app.constants";
 import { getTasks } from "@services/api.service";
 
 import DashboardView from "./Dashboard.view";
@@ -15,11 +17,14 @@ const SpinnerWrapper = styled.div`
   justify-content: center;
 `;
 
+const DEFAULT_FILTER = { group_by: GROUPS.STATUS, order_by: ORDERS.PRIORITY };
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: false,
+      filters: DEFAULT_FILTER,
     };
   }
 
@@ -31,8 +36,12 @@ class Dashboard extends React.Component {
     });
   }
 
+  updateFilters = (filters) => {
+    this.setState({ filters });
+  };
+
   render() {
-    const { isLoading, tickets, users } = this.state;
+    const { isLoading, filters, tickets, users } = this.state;
     console.log({ tickets, users });
 
     if (isLoading) {
@@ -44,9 +53,9 @@ class Dashboard extends React.Component {
     }
 
     return (
-      <div>
+      <DashboardLayout filters={filters} onUpdateFilter={this.updateFilters}>
         <DashboardView tickets={tickets} users={users} />
-      </div>
+      </DashboardLayout>
     );
   }
 }

@@ -18,8 +18,8 @@ const SpinnerElement = styled.span`
   animation: 0.8s infinite ${rotate};
 `;
 
-const Spinner = (props) => {
-  return <SpinnerElement {...props} />;
+const Spinner = () => {
+  return <SpinnerElement />;
 };
 
 export default Spinner;
