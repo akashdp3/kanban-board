@@ -7,6 +7,7 @@ import { GROUPS, ORDERS } from "@constants/app.constants";
 import { getTasks } from "@services/api.service";
 
 import DashboardView from "./Dashboard.view";
+import FilterCacheService from "@services/filterCache.service";
 
 const SpinnerWrapper = styled.div`
   width: 100vw;
@@ -22,9 +23,14 @@ const DEFAULT_FILTER = { groupedBy: GROUPS.STATUS, orderedBy: ORDERS.PRIORITY };
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
+    const filters = FilterCacheService.getFilters();
+    if (!filters) {
+      FilterCacheService.setFilters(DEFAULT_FILTER);
+    }
+
     this.state = {
       isLoading: true,
-      filters: DEFAULT_FILTER,
+      filters: filters || DEFAULT_FILTER,
     };
   }
 
@@ -35,7 +41,9 @@ class Dashboard extends React.Component {
   }
 
   updateFilters = (filters) => {
-    this.setState({ filters });
+    this.setState({ filters }, () => {
+      FilterCacheService.setFilters(this.state.filters);
+    });
   };
 
   render() {

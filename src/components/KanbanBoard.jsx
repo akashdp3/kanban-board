@@ -12,6 +12,11 @@ const Wrapper = styled.div`
   width: auto;
   height: auto;
   overflow-x: auto;
+
+  @media only screen and (max-width: 810px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const KanbanBoard = (props) => {

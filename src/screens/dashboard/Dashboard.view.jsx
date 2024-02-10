@@ -8,7 +8,10 @@ const DashboardView = (props) => {
   const { tickets, users, filters } = props;
 
   const columns = useMemo(() => {
-    return groupBy(tickets, users, filters.groupedBy);
+    return orderBy(
+      groupBy(tickets, users, filters.groupedBy),
+      filters.orderedBy,
+    );
   }, [filters, tickets, users]);
 
   return (

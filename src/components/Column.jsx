@@ -19,6 +19,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-bottom: 1px solid #ccc;
 
     .column-title {
       font-size: 14px;
