@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   GROUPS,
   ORDERS,
@@ -54,8 +55,10 @@ export function orderBy(columns, key) {
   console.log({ columns, key });
   return columns.map((column) => ({
     ...column,
-    tickets: column.tickets.sort(
-      ORDERS.PRIORITY === key ? orderByPriority : orderByTitle,
+    tickets: _.orderBy(
+      column.tickets,
+      [key],
+      key === GROUPS.PRIORITY ? "desc" : "asc",
     ),
   }));
 }
